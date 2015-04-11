@@ -753,4 +753,18 @@ public class ParseObject {
 			setUpdatedAt(Parse.parseDate(value.toString()));
 		}		
 	}
+	
+	public void addData(JSONObject jsonObject){
+		Iterator<?> it = jsonObject.keys();
+		while (it.hasNext()) {
+			String key = (String) it.next();
+			Object value = jsonObject.opt(key);
+			if(Parse.isInvalidKey(key)) {
+				setReservedKey(key, value);
+			}
+			else {
+				put(key, ParseDecoder.decode(value), false);
+			}
+		}
+	}
 }
