@@ -53,13 +53,13 @@ public class ParseGetCommand extends ParseCommand {
 					
 					Iterator it = query.keySet().iterator();
 					if(it.hasNext()) {
-						url += "?";
+						url += "?where="+URLEncoder.encode(query.toString(), "UTF-8");
 					}
-					while(it.hasNext()) {
-						String key = (String) it.next();
-						Object obj = query.get(key);
-						url += key + "=" + URLEncoder.encode(obj.toString(), "UTF-8") + "&";
-					}
+					//while(it.hasNext()) {
+					//	String key = (String) it.next();
+					//	Object obj = query.get(key);
+					//	url += key + "=" + URLEncoder.encode(obj.toString(), "UTF-8") + "&";
+					//}
 					
 					if(LOGGER.isDebugEnabled()) {
 						LOGGER.debug("Final Request URL: {}", url);
